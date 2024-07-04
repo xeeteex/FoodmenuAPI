@@ -5,15 +5,14 @@ import { Tech } from "./pages/home/Tech";
 import { Intro } from "./pages/home/Intro";
 
 const App = () => {
-
-
   return (
-    <div >
-      <Header/>
-      <DisplaySec/>
+    <div>
+      
+      <Header />
+      <DisplaySec />
       <Tech />
       <Intro />
-      <Footer/>
+      <Footer />
     </div>
   );
 };
