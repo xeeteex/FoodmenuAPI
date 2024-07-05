@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "./Footer";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -10,12 +11,12 @@ export const Header = () => {
       <GiHamburgerMenu  className="hidden sm:flex"/>
 
       <nav className="sm:hidden">
-        <a href="#home" className="hover:bg-white hover:text-black px-4 py-2">
+        <NavLink to='/about' className="rounded-md hover:bg-[#ececec] hover:text-white px-4 py-2">
           About
-        </a>
-        <a href="#home" className="hover:bg-white hover:text-black px-4 py-2">
+        </NavLink>
+        <NavLink to='/contact' className="rounded-md hover:bg-[#ececec] hover:text-white px-4 py-2">
           Contact
-        </a>
+        </NavLink>
       </nav>
 
     </header>
