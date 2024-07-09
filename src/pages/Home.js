@@ -1,25 +1,26 @@
 import React from 'react'
-import { Header } from '../components/Header'
-import { NavLink, Outlet } from 'react-router-dom'
-
+import { useNavigate } from 'react-router';
+import { posts } from '../dummy/data'
 
 export const Home = () => {
+
+  const nav = useNavigate();
+
   return (
+    <div className='p-2 space-y-2'>
+     
+     {posts.map((post,i)=>{
+      return <div onClick={() => nav(`/detail/${post.id}`)}className='shadow-lg p-4' key={post.id}> {/* backtick */}
+        <h1>{post.title}</h1>
 
-    
-    <div>
-        <Header/>
 
+      </div>
 
-        <h1>this is home</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque accusantium saepe magnam, alias ipsam quisquam dolores amet fuga sint eveniet quis error! Reprehenderit consequatur vitae rem necessitatibus enim officiis repellat.</p>
-        
-        <NavLink to='/'>Page1</NavLink>
-        <NavLink to='/page2'>Page2</NavLink>
+     })}
 
-        <Outlet/>
 
     </div>
   )
 }
- 
+
+export default Home
