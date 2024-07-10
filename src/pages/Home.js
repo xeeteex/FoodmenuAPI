@@ -1,22 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
-import { posts } from '../dummy/data'
+
 
 export const Home = () => {
 
-  const nav = useNavigate();
+  const [count,setCount] = useState(0)
+  const [show,setShow] = useState(false)
 
+  const handleAdd =()=>{
+    setCount((prev)=>prev+1)
+  }
+  const handleSub =()=>{
+    setCount((prev)=>prev-1)
+  }
+
+  const handleShow =()=>{
+    setShow((prev)=>!prev)
+  }
+
+
+
+  console.log('render')
   return (
-    <div className='p-2 space-y-2'>
+    <div className=''>
      
-     {posts.map((post,i)=>{
-      return <div onClick={() => nav(`/detail/${post.id}`)}className='shadow-lg p-4' key={post.id}> {/* backtick */}
-        <h1>{post.title}</h1>
+     {show && <h1>Hello</h1>}
+
+     <button onClick={handleShow} className='rounded-lg px-2 bg-blue-400'>Toggle show</button>
+
+     <h1>{count}</h1>
+     <button onClick={handleAdd} className='rounded-lg px-2 bg-blue-400'>Add Count</button>
+     <button onClick={handleSub} className='rounded-lg px-2 bg-blue-400'>Sub Count</button>
 
 
-      </div>
-
-     })}
+     
 
 
     </div>
