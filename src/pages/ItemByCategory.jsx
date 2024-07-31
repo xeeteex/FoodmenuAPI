@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
+import ItemCard from '../components/ItemCard';
 
 const ItemByCategory = () => {
   const nav = useNavigate();
@@ -51,11 +52,15 @@ const ItemByCategory = () => {
     <div className='p-4 grid grid-cols-3 gap-4'>
 
       {data && data?.meals?.map((meal) => {
-        return <div onClick={() => nav(`/item-detail/${meal.idMeal}`)} key={meal.idMeal} className='shadow-xl'>
-          <h1>{meal.strMeal}</h1>
-          <img src={meal.strMealThumb} alt="" />
+        return <ItemCard 
+        meal={meal}
+        key={meal.idMeal}/>
 
-        </div>
+        // <div onClick={() => nav(`/item-detail/${meal.idMeal}`)} key={meal.idMeal} className='shadow-xl'>
+        //   <h1>{meal.strMeal}</h1>
+        //   <img src={meal.strMealThumb} alt="" />
+
+        // </div>
       })}
 
 
