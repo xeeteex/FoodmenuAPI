@@ -1,10 +1,11 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Contact } from "./pages/Contact";
-import { About } from "./pages/About";
-import { RootLayout } from "./components/RootLayout";
-import DetailPage from "./pages/sub-pages/DetailPage";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import RootLayout from "./components/RootLayout";
+import HomePage from "./pages/HomePage";
+import ItemByCategory from "./pages/ItemByCategory";
+import ItemDetail from "./pages/ItemDetail";
 
 export const App = () => {
   const router = createBrowserRouter([
@@ -13,22 +14,23 @@ export const App = () => {
       element: <RootLayout />,
       children: [
         {
-          path: "/",
-          element: <Home/>,
-        },
-        
-        {
-          path: "detail/:id",
-          element: <DetailPage/>
+          index: true,
+          element: <HomePage />,
         },
         {
-          path: "contact",
+          path: "/category-item/:cata",
+          element: <ItemByCategory />,
+        },
+        {
+          path: "/item-detail/:id",
+          element: <ItemDetail />,
+        },
+        { path: "/about-page", 
+          element: <About /> 
+        },
+        {
+          path: "/contact-page",
           element: <Contact />,
-        },
-
-        {
-          path: "about",
-          element: <About />,
         },
       ],
     },
