@@ -1,39 +1,43 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router';
+import { useApiHooks } from '../hooks/apiHooks';
 
 const ItemDetail = () => {
   const { id } = useParams();
 
-  const [data, setData] = useState();
-  const [load, setLoad] = useState(false);
-  const [err, setErr] = useState();
-
-  const getData = async () => {
-    setLoad(true);
-    try {
-      const response = await axios.get('https://www.themealdb.com/api/json/v1/1/lookup.php', {
-        params: {
-          i: id
-        }
-      });
+  
+  const [load,data,err] =useApiHooks('https://www.themealdb.com/api/json/v1/1/lookup.php',{i:id})
 
 
-      setData(response.data);
+  // const [data, setData] = useState();
+  // const [load, setLoad] = useState(false);
+  // const [err, setErr] = useState();
 
-    } catch (err) {
-      console.log(err);
-      setErr(err?.message);
+  // const getData = async () => {
+  //   setLoad(true);
+  //   try {
+  //     const response = await axios.get('https://www.themealdb.com/api/json/v1/1/lookup.php', {
+  //       params: {
+  //         i: id
+  //       }
+  //     });
 
-    } finally {
-      setLoad(false);
 
-    }
-  }
+  //     setData(response.data);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  //   } catch (err) {
+  //     console.log(err);
+  //     setErr(err?.message);
+
+  //   } finally {
+  //     setLoad(false);
+
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   if (load) {
     return <h1>Loading....</h1>

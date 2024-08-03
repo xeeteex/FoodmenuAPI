@@ -1,41 +1,46 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router';
+
+import React from 'react'
+import { useParams } from 'react-router';
 import ItemCard from '../components/ItemCard';
+import { useApiHooks } from '../hooks/apiHooks';
 
 const ItemByCategory = () => {
-  const nav = useNavigate();
+
   const { cata } = useParams();
 
-  const [data, setData] = useState();
-  const [load, setLoad] = useState(false);
-  const [err, setErr] = useState();
+  const [load,data,err] =useApiHooks('https://www.themealdb.com/api/json/v1/1/filter.php',{c: cata})
 
-  const getData = async () => {
-    setLoad(true);
-    try {
-      const response = await axios.get('https://www.themealdb.com/api/json/v1/1/filter.php', {
-        params: {
-          c: cata
-        }
-      });
+  // const nav = useNavigate();
+
+  // const [data, setData] = useState();
+  // const [load, setLoad] = useState(false);
+  // const [err, setErr] = useState();
+
+  // const getData = async () => {
+  //   setLoad(true);
+  //   try {
+  //     const response = await axios.get('https://www.themealdb.com/api/json/v1/1/filter.php', {
+  //       params: {
+  //         c: cata
+  //       }
+  //     });
 
 
-      setData(response.data);
+  //     setData(response.data);
 
-    } catch (err) {
-      console.log(err);
-      setErr(err?.message);
+  //   } catch (err) {
+  //     console.log(err);
+  //     setErr(err?.message);
 
-    } finally {
-      setLoad(false);
+  //   } finally {
+  //     setLoad(false);
 
-    }
-  }
+  //   }
+  // }
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   if (load) {
     return <h1>Loading....</h1>
