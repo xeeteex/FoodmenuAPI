@@ -1,11 +1,7 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import RootLayout from "./components/RootLayout";
-import HomePage from "./pages/HomePage";
-import ItemByCategory from "./pages/ItemByCategory";
-import ItemDetail from "./pages/ItemDetail";
-import Sample from "./pages/Sample";
-
+import RootLayout from "./ui/RootLayout";
+import HomePage from "./features/home/HomePage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -15,14 +11,6 @@ const App = () => {
         {
           index: true,
           element: <HomePage />,
-        },
-        {
-          path: "category-item/:cata",
-          element: <ItemByCategory />,
-        },
-        {
-          path: "item-detail/:id",
-          element: <ItemDetail />,
         },
       ],
     },
